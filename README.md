@@ -1,1 +1,1 @@
-# NewsApp based on MERN Stack
+# NewsApp (new repository) based on MERN Stack
