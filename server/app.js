@@ -6,12 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-//login
-var users = require('./routes/users');
 //registration
 var regis = require('./routes/registration');
 //news
 var news = require('./routes/news');
+//login
+var login = require('./routes/login');
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -22,7 +23,6 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 
 var app = express();
 var compiler = webpack(webpackConfig);
-
 
 app.use(webpackDevMiddleware(compiler, {
  publicPath: webpackConfig.output.publicPath,
@@ -54,9 +54,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
-app.use('/regis',regis);
-app.use('/news',news);
+app.use('/regis', regis);
+app.use('/news', news);
+
+app.use(require('serve-static')(__dirname + '/../../public'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/login', login);
 
 mongoose.connect('mongodb://localhost:27017/newsdb');
 
