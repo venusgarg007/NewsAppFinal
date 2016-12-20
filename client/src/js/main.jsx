@@ -13,7 +13,6 @@ import favNews from './components/favNews.jsx'
 class MainComponent extends React.Component{
 
 	render() {
-
 		return (
 		<div>
 		<NavBar/>
