@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 //registration
-var regis = require('./routes/registration');
+var register = require('./routes/registration');
 //news
 var news = require('./routes/news');
 //login
@@ -54,7 +54,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/regis', regis);
+app.use('/register', register);
 app.use('/news', news);
 
 app.use(require('serve-static')(__dirname + '/../../public'));
