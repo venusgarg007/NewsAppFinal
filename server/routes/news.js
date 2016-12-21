@@ -32,7 +32,7 @@ app.post('/',function(req,res) {
 });
 
 //delete
-app.delete('/',function(req,res) {
+app.delete('/delete',function(req,res) {
   news.remove( {
     url : req.body.url
   }, function(err){
