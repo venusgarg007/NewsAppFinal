@@ -27,7 +27,7 @@ class MainComponent extends React.Component {
 ReactDOM.render(
 	<Router history={browserHistory}>
 	<Route path="/" component={MainComponent} >
-		<IndexRoute component = {Home} />
+		<IndexRoute component = {registrationAndLogin} />
 		<Route path="/favNews" component={favNews} />
 		<Route path="/home" component={Home}/>
 		<Route path="/about" component={About}/>

@@ -16,12 +16,12 @@ export default class Home extends React.Component {
 			url: "https://newsapi.org/v1/articles?source="+provider+"&apiKey=c37357c46e3441b29e0c4c976e74299c",
 			type: "GET",
 			dataType: 'JSON',
-			success : function(msg){
+			success : function(msg) {
 				/*msg represents JSON data of news headlines sent back by external API*/
 				var arr = msg.articles;
 				that.setState({newsArr:arr});
 			},
-			error: function(err){
+			error: function(err) {
 				console.log('error');
 			}
 		});
