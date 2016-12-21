@@ -1,6 +1,6 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import home from './home.jsx';
+import Home from './MainComponent.jsx';
 
 export default class registrationAndLogin extends React.Component {
 	constructor() {
@@ -19,7 +19,7 @@ export default class registrationAndLogin extends React.Component {
 			data: 'username='+document.getElementById("username").value+'&email=' + document.getElementById("email").value + '&password=' + document.getElementById("password").value,
 
 			success: function(msg) {
-				console.log("user registration done");
+				alert("User registered successfully");
 			},
 			error: function(err) {
 				console.log("error occurred");
@@ -83,7 +83,7 @@ export default class registrationAndLogin extends React.Component {
 						<div className="modal-content">
 							<div className="modal-header">
 								<button className="close" data-dismiss="modal">X</button>
-								<h4>User Registration </h4>
+								<h4>User Registration</h4>
 							</div>
 
 							<div className="modal-body">
@@ -105,7 +105,7 @@ export default class registrationAndLogin extends React.Component {
 									<div className="form-group">
 										<label className="col-lg-2 control-label" for="password">Password</label>
 										<div class="col-lg-10">
-											<input class="form-control" id="password" type="text" placeholder="Enter Password" />
+											<input class="form-control" id="password" type="password" placeholder="Enter Password" />
 										</div>
 									</div>
 

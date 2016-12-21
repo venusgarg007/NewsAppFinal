@@ -9,8 +9,10 @@ import About from './components/About.jsx';
 import Home from './components/MainComponent.jsx';
 import Contact from './components/Contact.jsx';
 import NavBar from './components/NavBar.jsx';
-import favNews from './components/favNews.jsx'
-class MainComponent extends React.Component{
+import favNews from './components/favNews.jsx';
+import registrationAndLogin from './components/registrationAndLogin.jsx';
+
+class MainComponent extends React.Component {
 
 	render() {
 		return (
@@ -23,7 +25,7 @@ class MainComponent extends React.Component{
 	}
 }
 ReactDOM.render(
-	<Router history={hashHistory}>
+	<Router history={browserHistory}>
 	<Route path="/" component={MainComponent} >
 		<IndexRoute component = {Home} />
 		<Route path="/favNews" component={favNews} />

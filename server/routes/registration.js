@@ -9,7 +9,6 @@ router.post('/',function(req,res,next) {
   var regisUser = new User({
     username : req.body.username,
     email : req.body.email,
-    age : req.body.age,
     password : req.body.password,
   });
 
