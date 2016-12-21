@@ -10,7 +10,7 @@ router.post('/',function(req,res,next) {
     username : req.body.username,
     email : req.body.email,
     age : req.body.age,
-    password : req.body.pass,
+    password : req.body.password,
   });
 
   regisUser.save(function(err){

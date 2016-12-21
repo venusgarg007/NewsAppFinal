@@ -24,6 +24,15 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 var app = express();
 var compiler = webpack(webpackConfig);
 
+
+
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var connectflash = require('connect-flash');
+var User = require('./model/users');
+
+
+
 app.use(webpackDevMiddleware(compiler, {
  publicPath: webpackConfig.output.publicPath,
    stats: {colors: true}, // Same as `output.publicPath` in most cases.
@@ -40,6 +49,7 @@ app.use(webpackHotMiddleware(compiler, {
    log: console.log,
 }))
 
+mongoose.connect('mongodb://localhost:27017/newsdb');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -64,9 +74,29 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/login', login);
+app.use('/',login);
 
-mongoose.connect('mongodb://localhost:27017/newsdb');
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username, password:password }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+     // if (!user.verifyPassword(password)) { return done(null, false); }
+      return done(null, user);
+    });
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
